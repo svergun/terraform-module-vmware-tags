@@ -23,7 +23,7 @@ This module manages VMware tag categories and tags.
 
 Define your module in `tags.tf`:
 
-```json
+```hcl
 module "vsphere_tags" {
   source = "git::https://github.com/svergun/terraform-module-vmware-tags.git"
 
@@ -52,7 +52,7 @@ module "vsphere_tags" {
 
 Define the module output in `outputs.tf`:
 
-```json
+```hcl
 # Output vsphere category IDs
 output "category_ids" {
   description = "IDs of created categories"
@@ -68,7 +68,7 @@ output "tag_ids" {
 
 Define variables in `variables.tf`:
 
-```json
+```hcl
 variable "vcenter_url" {
   type        = string
   description = "The vCenter server to connect to"
@@ -93,7 +93,7 @@ variable "vcenter_unverified_ssl" {
 
 Define the provider in `provider.tf`:
 
-```json
+```hcl
 # Configure the VMware vSphere provider
 provider "vsphere" {
   vsphere_server       = var.vcenter_url
@@ -120,7 +120,7 @@ terraform {
 
 Define requirements in `terraform.tf`:
 
-```json
+```hcl
 terraform {
   required_providers {
     vsphere = {
@@ -133,7 +133,7 @@ terraform {
 
 Set your sensitive data in `.vault,auto,tfvars` (this is not best practice, use HashiCorp Vault or alternative secrets management for a production environment, approach in this example is for simplicity only and good for testing or home lab):
 
-```json
+```hcl
 vcenter_url   = "vcenter.lab.local"
 vcenter_user     = "administrator@lab.local"
 vcenter_password = "password"
