@@ -1,4 +1,4 @@
-variable "vmw_vcs_categories" {
+variable "categories" {
   description = "Map of tag categories"
   type = map(object({
     description     = string
@@ -7,7 +7,7 @@ variable "vmw_vcs_categories" {
   }))
 }
 
-variable "vmw_vcs_category_tags" {
+variable "tags" {
   description = "Map of tags grouped by category"
   type = map(object({
     name        = string

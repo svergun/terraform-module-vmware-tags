@@ -1,6 +1,6 @@
 # Create tag categories
 resource "vsphere_tag_category" "items" {
-  for_each = var.vmw_vcs_categories
+  for_each = var.categories
 
   name        = each.key
   description = each.value.description
@@ -11,7 +11,7 @@ resource "vsphere_tag_category" "items" {
 
 # Create tags under categories
 resource "vsphere_tag" "items" {
-  for_each = { for category, details in var.vmw_vcs_category_tags : category => details }
+  for_each = { for category, details in var.tags : category => details }
 
   name        = each.value.name
   category_id = vsphere_tag_category.items[each.value.category].id
