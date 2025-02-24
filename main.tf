@@ -7,6 +7,9 @@ resource "vsphere_tag_category" "items" {
   cardinality = each.value.cardinality
 
   associable_types = each.value.associable_types
+
+  # Ensure the category is created before any tags are created
+  depends_on = []
 }
 
 # Create tags under categories
@@ -16,4 +19,7 @@ resource "vsphere_tag" "items" {
   name        = each.value.name
   category_id = vsphere_tag_category.items[each.value.category].id
   description = each.value.description
+
+  # Ensure the tag is created only after its category is created
+  depends_on = [vsphere_tag_category.items]
 }
